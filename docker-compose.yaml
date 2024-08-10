@@ -1,1 +1,22 @@
+services:
+  angular-app:
+    container_name: aston_villa_container
+    build: .
+    ports:
+      - "8082:80"
+#    networks:
+#      aston_villa_network
 
+  mysql:
+    image: "mysql:latest"
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: astonvilla
+      MYSQL_PASSWORD: root
+    networks:
+      - aston_villa_network
+
+networks:
+  aston_villa_network:
