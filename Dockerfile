@@ -11,7 +11,7 @@ RUN ng build
 # Stage 2: run
 FROM nginx:latest
 RUN apt-get update && apt-get install -y iputils-ping
-COPY --from=build /usr/src/app/dist/aston-villa-app /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/aston-villa-app/usr/share/nginx/html
 EXPOSE 80
 
 

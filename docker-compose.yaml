@@ -4,8 +4,8 @@ services:
     build: .
     ports:
       - "8082:80"
-#    networks:
-#      aston_villa_network
+    networks:
+      - aston_villa_network
 
   mysql:
     image: "mysql:latest"
