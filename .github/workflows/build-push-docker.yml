@@ -1,0 +1,28 @@
+name : build and push on dockerhub
+
+on : push
+
+jobs :
+  push_to_registry:
+    name: Push Docker image to dockerhub
+    runs-on: ubuntu-latest # self-hosted kif yabda 3andk serveur
+    steps:
+      - 
+        name: checkout the repo
+        uses: actions/checkout@v4
+      - 
+        name: Set Up Docker BuildX
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v2
+        with: 
+          username: ${{ secrets.DCKRHUBUSERNAME }}
+          password: ${{ secrets.DCKRHUBTKN }}
+      -
+        name: Push On DockerHub
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DCKRHUBUSERNAME }}/astonvilla:1.1.${{ github.run_number }}
